@@ -1,0 +1,50 @@
+server:
+  port: 7090
+
+logging:
+  level:
+    com.datasource: debug
+
+mybatis:
+  executor-type: simple
+
+spring:
+  datasource:
+    hikari:
+      minimum-idle: 4
+      maximum-pool-size: 16
+      connection-timeout: 10000
+      idle-timeout: 30000
+      connection-init-sql: set names utf8mb4
+    dynamic:
+      primary: test1
+      datasource:
+        test1: 
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/test_1?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+          username: root
+          password: root
+        test2: 
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/test_2?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+          username: root
+          password: root
+        test3: 
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/test_3?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+          username: root
+          password: root
+
+mybatis-plus: 
+  type-aliases-package: com.datasource.pojo
+  mapper-locations: classpath*:com/datasource/mapper/**/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+pagehelper: 
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+  row-bounds-with-count: true
+  helper-dialect: mysql
+  
